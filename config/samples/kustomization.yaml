@@ -1,0 +1,12 @@
+## Append samples of your project ##
+resources:
+- omega-issuer_v1alpha1_omegaissuer.yaml
+- omega-issuer_v1alpha1_sampleclusterissuer.yaml
+# +kubebuilder:scaffold:manifestskustomizesamples
+
+- certificate_clusterissuer.yaml
+- certificate_issuer.yaml
+- certificaterequest_clusterissuer.yaml
+- certificaterequest_issuer.yaml
+- secret_clusterissuer.yaml
+- secret_issuer.yaml

@@ -1,0 +1,11 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: certificate-by-omegaissuer
+spec:
+  commonName: certificate-by-omegaissuer.example.com
+  secretName: certificate-by-omegaissuer
+  issuerRef:
+    name: omegaissuer-sample
+    group: omega-issuer.omegahome.net
+    kind: OmegaIssuer

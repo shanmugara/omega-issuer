@@ -1,0 +1,14 @@
+# bind the cert-manager internal approver to approve
+# omega-issuer.omegahome.net CertificateRequests
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: cert-manager-controller-approve:omega-issuer
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: cert-manager-controller-approve:omega-issuer
+subjects:
+- kind: ServiceAccount
+  name: cert-manager
+  namespace: cert-manager

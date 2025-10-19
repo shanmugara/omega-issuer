@@ -1,0 +1,10 @@
+apiVersion: omega-issuer.omegahome.net/v1alpha1
+kind: OmegaClusterIssuer
+metadata:
+  labels:
+    app.kubernetes.io/name: sample-external-issuer
+    app.kubernetes.io/managed-by: kustomize
+  name: sampleclusterissuer-sample
+spec:
+  authSecretName: "sampleclusterissuer-sample-credentials"
+  url: "http://omega-issuer.omegahome.net/api/v1"

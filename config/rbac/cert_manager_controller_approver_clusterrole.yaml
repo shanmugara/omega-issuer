@@ -1,0 +1,15 @@
+# permissions to approve all omega-issuer.omegahome.net requests
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: cert-manager-controller-approve:omega-issuer
+rules:
+- apiGroups:
+  - cert-manager.io
+  resources:
+  - signers
+  verbs:
+  - approve
+  resourceNames:
+  - omegaissuers.omega-issuer.omegahome.net/*
+  - omegaclusterissuers.omega-issuer.omegahome.net/*
