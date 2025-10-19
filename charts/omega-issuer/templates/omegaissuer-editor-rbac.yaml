@@ -1,0 +1,25 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: {{ include "omega-issuer.fullname" . }}-omegaissuer-editor-role
+  labels:
+  {{- include "omega-issuer.labels" . | nindent 4 }}
+rules:
+- apiGroups:
+  - omega-issuer.omegahome.net
+  resources:
+  - omegaissuers
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - omega-issuer.omegahome.net
+  resources:
+  - omegaissuers/status
+  verbs:
+  - get
