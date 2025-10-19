@@ -27,5 +27,5 @@ roleRef:
   name: '{{ include "omega-issuer.fullname" . }}-cert-manager-controller-approve:omega-issuer'
 subjects:
 - kind: ServiceAccount
-  name: cert-manager
-  namespace: '{{ .Release.Namespace }}'
+  name: {{ .Values.certManager.serviceAccountName }}
+  namespace: {{ .Values.certManager.namespace }}

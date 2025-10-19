@@ -34,3 +34,6 @@ metricsService:
     protocol: TCP
     targetPort: 8443
   type: ClusterIP
+certManager:
+  namespace: cert-manager
+  serviceAccountName: cert-manager

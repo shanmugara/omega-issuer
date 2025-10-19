@@ -9,6 +9,10 @@ which aren't built into the cert-manager core.
 
 This repository provides an example of an [External Issuer][] built using the [issuer-lib][] library.
 
+# omega-issuer
+The sample-external-issuer implements an external issuer based on an external Certificate Authority API called "Omega CA".
+This is purely fictional and is used here for demonstration purposes only.
+
 ## Install
 
 ```console
