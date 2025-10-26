@@ -51,7 +51,7 @@ rules:
   - certificates.k8s.io
   resourceNames:
   - omegaissuers.omega-issuer.omegahome.net/*
-  - omegaclusterissuers.omega-issuer.omegahome.net/*
+  - sampleclusterissuers.omega-issuer.omegahome.net/*
   resources:
   - signers
   verbs:
@@ -60,7 +60,7 @@ rules:
   - omega-issuer.omegahome.net
   resources:
   - omegaissuers
-  - omegaclusterissuers
+  - sampleclusterissuers
   verbs:
   - get
   - list
@@ -69,6 +69,6 @@ rules:
   - omega-issuer.omegahome.net
   resources:
   - omegaissuers/status
-  - omegaclusterissuers/status
+  - sampleclusterissuers/status
   verbs:
   - patch
