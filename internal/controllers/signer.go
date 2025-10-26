@@ -63,15 +63,15 @@ type Issuer struct {
 	client client.Client
 }
 
-// +kubebuilder:rbac:groups=omega-issuer.omegahome.net,resources=sampleclusterissuers;omegaissuers,verbs=get;list;watch
-// +kubebuilder:rbac:groups=omega-issuer.omegahome.net,resources=sampleclusterissuers/status;omegaissuers/status,verbs=patch
+// +kubebuilder:rbac:groups=omega-issuer.omegahome.net,resources=omegaclusterissuers;omegaissuers,verbs=get;list;watch
+// +kubebuilder:rbac:groups=omega-issuer.omegahome.net,resources=omegaclusterissuers/status;omegaissuers/status,verbs=patch
 // +kubebuilder:rbac:groups="",resources=events,verbs=create;patch
 // +kubebuilder:rbac:groups="",resources=secrets,verbs=get;list;watch
 // +kubebuilder:rbac:groups=cert-manager.io,resources=certificaterequests,verbs=get;list;watch
 // +kubebuilder:rbac:groups=cert-manager.io,resources=certificaterequests/status,verbs=patch
 // +kubebuilder:rbac:groups=certificates.k8s.io,resources=certificatesigningrequests,verbs=get;list;watch
 // +kubebuilder:rbac:groups=certificates.k8s.io,resources=certificatesigningrequests/status,verbs=patch
-// +kubebuilder:rbac:groups=certificates.k8s.io,resources=signers,verbs=sign,resourceNames=sampleclusterissuers.omega-issuer.omegahome.net/*;omegaissuers.omega-issuer.omegahome.net/*
+// +kubebuilder:rbac:groups=certificates.k8s.io,resources=signers,verbs=sign,resourceNames=omegaclusterissuers.omega-issuer.omegahome.net/*;omegaissuers.omega-issuer.omegahome.net/*
 
 func (s Issuer) SetupWithManager(ctx context.Context, mgr ctrl.Manager) error {
 	s.client = mgr.GetClient()

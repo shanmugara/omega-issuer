@@ -51,8 +51,8 @@ rules:
 - apiGroups:
   - certificates.k8s.io
   resourceNames:
-  - omegaissuers.omega-issuer.omegahome.net/*
   - omegaclusterissuers.omega-issuer.omegahome.net/*
+  - omegaissuers.omega-issuer.omegahome.net/*
   resources:
   - signers
   verbs:
@@ -60,8 +60,8 @@ rules:
 - apiGroups:
   - omega-issuer.omegahome.net
   resources:
-  - omegaissuers
   - omegaclusterissuers
+  - omegaissuers
   verbs:
   - get
   - list
@@ -69,8 +69,8 @@ rules:
 - apiGroups:
   - omega-issuer.omegahome.net
   resources:
-  - omegaissuers/status
   - omegaclusterissuers/status
+  - omegaissuers/status
   verbs:
   - patch
 ---

@@ -55,7 +55,7 @@ func (vi *OmegaClusterIssuer) GetConditions() []metav1.Condition {
 // with an issuerName set to eg. "simpleclusterissuers.issuer.cert-manager.io/issuer1".
 func (vi *OmegaClusterIssuer) GetIssuerTypeIdentifier() string {
 	// ACTION REQUIRED: Change this to a unique string that identifies your cluster issuer
-	return "sampleclusterissuers.omega-issuer.omegahome.net"
+	return "omegaclusterissuers.omega-issuer.omegahome.net"
 }
 
 // issuer-lib requires that we implement the Issuer interface

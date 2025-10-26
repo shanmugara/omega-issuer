@@ -20,6 +20,7 @@ spec:
       {{- include "omega-issuer.selectorLabels" . | nindent 8 }}
       annotations:
         kubectl.kubernetes.io/default-container: manager
+        omegahome.net/managed-csi: "true"
     spec:
       containers:
       - args: {{- toYaml .Values.controllerManager.manager.args | nindent 8 }}

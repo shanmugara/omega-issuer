@@ -10,8 +10,8 @@ controllerManager:
         drop:
         - ALL
     image:
-      repository: shanmugara/omega-issuer
-      tag: v0.0.1
+      repository: docker.io/shanmugara/omega-issuer
+      tag: v0.0.2
     resources:
       limits:
         cpu: 500m
@@ -25,7 +25,8 @@ controllerManager:
       type: RuntimeDefault
   replicas: 1
   serviceAccount:
-    annotations: {}
+    annotations:
+      omegahome.net/managed-spire: "true"
 kubernetesClusterDomain: cluster.local
 metricsService:
   ports:
@@ -34,6 +35,3 @@ metricsService:
     protocol: TCP
     targetPort: 8443
   type: ClusterIP
-certManager:
-  namespace: cert-manager
-  serviceAccountName: cert-manager

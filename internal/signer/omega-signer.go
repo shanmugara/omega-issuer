@@ -23,8 +23,6 @@ func OmegaSignerHealthCheckerFromIssuerAndSecretData(s *omegaissuerapi.IssuerSpe
 	return &omegaSigner{spec: s}, nil
 }
 
-var Logger *logrus.Logger
-
 type omegaSigner struct {
 	spec *omegaissuerapi.IssuerSpec
 }
@@ -65,7 +63,7 @@ func (o *omegaSigner) Sign(csr []byte) ([]byte, error) {
 
 	ctx := context.Background()
 	// use spire svid auth
-	cauth := spireauthlib.ClientAuth{Logger: Logger}
+	cauth := spireauthlib.ClientAuth{Logger: logrus.New()}
 	tlsClient, err := cauth.GetTlsClient(ctx)
 	if err != nil {
 		return nil, fmt.Errorf("failed to initialize tls client: %w", err)
