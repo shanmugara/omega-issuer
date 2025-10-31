@@ -13,6 +13,61 @@ This repository provides an example of an [External Issuer][] built using the [i
 The sample-external-issuer implements an external issuer based on an external Certificate Authority API called "Omega CA".
 This is purely fictional and is used here for demonstration purposes only.
 
+# Install omega-issuer
+```console
+helm install omega-issuer oci://docker.io/shanmugara/omega-issuer --version 0.0.2 -n cert-manager
+```
+Requires spire to be enabled. Enable csi injection for the namespace.
+```console
+kubcetl label ns cert-manager csi-webhook=enabled
+```
+
+Create an omega issuer
+```console
+apiVersion: omega-issuer.omegahome.net/v1alpha1
+kind: OmegaIssuer
+metadata:
+  labels:
+    app.kubernetes.io/name: omega-issuer
+  name: omega-issuer
+  namespace: certtest
+spec:
+  url: https://omegaspire01.omegaworld.net:8082/v1/cert/request
+  authSecretName: omegacert
+```
+
+Sample certificate request
+```console
+apiVersion: omega-issuer.omegahome.net/v1alpha1
+kind: OmegaIssuer
+metadata:
+  labels:
+    app.kubernetes.io/name: omega-issuer
+  name: omega-issuer
+  namespace: certtest
+spec:
+  url: https://omegaspire01.omegaworld.net:8082/v1/cert/request
+  authSecretName: omegacert
+root@memtest-01:~# cat issuer-test-cert.yaml
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: memtest-omega-cert
+  namespace: certtest
+spec:
+  commonName: memtest-omega.omegahome.net
+  secretName: memtest-omega.omegahome.net
+  issuerRef:
+    name: omega-issuer
+    group: omega-issuer.omegahome.net
+    kind: OmegaIssuer
+  usages:
+    - digital signature
+    - key encipherment
+    - server auth
+```
+
+
 ## Install
 
 ```console
