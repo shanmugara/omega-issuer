@@ -38,17 +38,6 @@ spec:
 
 Sample certificate request
 ```console
-apiVersion: omega-issuer.omegahome.net/v1alpha1
-kind: OmegaIssuer
-metadata:
-  labels:
-    app.kubernetes.io/name: omega-issuer
-  name: omega-issuer
-  namespace: certtest
-spec:
-  url: https://omegaspire01.omegaworld.net:8082/v1/cert/request
-  authSecretName: omegacert
-root@memtest-01:~# cat issuer-test-cert.yaml
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
