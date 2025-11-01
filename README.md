@@ -19,7 +19,7 @@ helm install omega-issuer oci://docker.io/shanmugara/omega-issuer --version 0.0.
 ```
 Requires spire to be enabled. Enable csi injection for the namespace.
 ```console
-kubcetl label ns cert-manager csi-webhook=enabled
+kubectl label ns cert-manager csi-webhook=enabled
 ```
 
 Create an omega issuer
