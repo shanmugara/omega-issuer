@@ -69,13 +69,14 @@ spec:
                   is set as a flag on the controller component (and defaults to the
                   namespace that the controller runs in).
                 type: string
+              spireAuth:
+                type: boolean
               url:
                 description: |-
                   URL is the base URL for the endpoint of the signing service,
                   for example: "https://sample-signer.example.com/api".
                 type: string
             required:
-            - authSecretName
             - url
             type: object
           status:

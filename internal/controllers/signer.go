@@ -105,6 +105,11 @@ func (o *Issuer) getIssuerDetails(issuerObject issuerapi.Issuer) (*omegaissuerap
 }
 
 func (o *Issuer) getSecretData(ctx context.Context, issuerSpec *omegaissuerapi.IssuerSpec, namespace string) (map[string][]byte, error) {
+
+	if issuerSpec.SpireAuth {
+		return nil, nil
+	}
+
 	secretName := types.NamespacedName{
 		Namespace: namespace,
 		Name:      issuerSpec.AuthSecretName,
@@ -135,8 +140,12 @@ func (o *Issuer) Check(ctx context.Context, issuerObject issuerapi.Issuer) error
 		return err
 	}
 
-	_, err = o.getSecretData(ctx, issuerSpec, namespace)
-	return err
+	//Check for auth secret only if we are not using SPIRE
+	if !issuerSpec.SpireAuth {
+		_, err = o.getSecretData(ctx, issuerSpec, namespace)
+		return err
+	}
+	return nil
 }
 
 // Sign returns a signed certificate for the supplied CertificateRequestObject (a cert-manager CertificateRequest resource or
@@ -153,8 +162,11 @@ func (o *Issuer) Sign(ctx context.Context, cr signer.CertificateRequestObject, i
 			Err: err,
 		}
 	}
-
-	secretData, err := o.getSecretData(ctx, issuerSpec, namespace)
+	var secretData map[string][]byte
+	//Get auth secret only if we are not using SPIRE
+	if issuerSpec.SpireAuth {
+		secretData, err = o.getSecretData(ctx, issuerSpec, namespace)
+	}
 	if err != nil {
 		// Returning an IssuerError will change the status of the Issuer to Failed too.
 		return signer.PEMBundle{}, signer.IssuerError{

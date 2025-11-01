@@ -28,4 +28,4 @@ roleRef:
 subjects:
 - kind: ServiceAccount
   name: cert-manager
-  namespace: cert-manager
+  namespace: '{{ .Release.Namespace }}'

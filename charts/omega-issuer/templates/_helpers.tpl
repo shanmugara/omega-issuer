@@ -60,3 +60,16 @@ Create the name of the service account to use
 {{- default "default" .Values.serviceAccount.name }}
 {{- end }}
 {{- end }}
+
+{{/*
+Return the Kubernetes cluster name from kubeadm-config.
+*/}}
+{{- define "omega-issuer.clusterName" -}}
+{{- $cfg := (lookup "v1" "ConfigMap" "kube-system" "kubeadm-config") -}}
+{{- if $cfg }}
+  {{- $clusterConfig := fromYaml ($cfg.data.ClusterConfiguration) -}}
+  {{- $clusterConfig.clusterName | default "unknown" -}}
+{{- else -}}
+  unknown
+{{- end -}}
+{{- end -}}

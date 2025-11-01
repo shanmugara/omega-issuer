@@ -51,7 +51,8 @@ type IssuerSpec struct {
 	// with the given name in the configured 'cluster resource namespace', which
 	// is set as a flag on the controller component (and defaults to the
 	// namespace that the controller runs in).
-	AuthSecretName string `json:"authSecretName"`
+	AuthSecretName string `json:"authSecretName,omitempty"`
+	SpireAuth      bool   `json:"spireAuth,omitempty"`
 }
 
 func (vi *OmegaIssuer) GetConditions() []metav1.Condition {

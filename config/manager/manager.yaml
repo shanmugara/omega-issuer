@@ -30,6 +30,7 @@ spec:
       labels:
         control-plane: controller-manager
         app.kubernetes.io/name: sample-external-issuer
+        spiffe.io/cluster: kubernetes
     spec:
       # TODO(user): Uncomment the following code to configure the nodeAffinity expression
       # according to the platforms which are supported by your solution.
@@ -72,6 +73,9 @@ spec:
           capabilities:
             drop:
             - "ALL"
+        env:
+        - name: SPIFFE_ENDPOINT_SOCKET
+          value: unix:///var/run/secrets/workload-spiffe-uds/socket
         livenessProbe:
           httpGet:
             path: /healthz

@@ -9,6 +9,8 @@ controllerManager:
       capabilities:
         drop:
         - ALL
+    env:
+      spiffeEndpointSocket: unix:///var/run/secrets/workload-spiffe-uds/socket
     image:
       repository: docker.io/shanmugara/omega-issuer
       tag: v0.0.2

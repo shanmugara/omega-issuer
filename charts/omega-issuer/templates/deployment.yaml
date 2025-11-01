@@ -17,6 +17,7 @@ spec:
       labels:
         app.kubernetes.io/name: sample-external-issuer
         control-plane: controller-manager
+        spiffe.io/cluster: {{ include "omega-issuer.clusterName" . }}
       {{- include "omega-issuer.selectorLabels" . | nindent 8 }}
       annotations:
         kubectl.kubernetes.io/default-container: manager
@@ -27,6 +28,8 @@ spec:
         command:
         - /manager
         env:
+        - name: SPIFFE_ENDPOINT_SOCKET
+          value: {{ quote .Values.controllerManager.manager.env.spiffeEndpointSocket }}
         - name: KUBERNETES_CLUSTER_DOMAIN
           value: {{ quote .Values.kubernetesClusterDomain }}
         image: {{ .Values.controllerManager.manager.image.repository }}:{{ .Values.controllerManager.manager.image.tag
